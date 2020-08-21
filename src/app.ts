@@ -1,21 +1,54 @@
-import express, { json } from 'express';
-// import movies from './routers/movies';
+import express, { Request, Response } from 'express';
+import db from './database/db-instance';
 
-const app: express.Application = express();
+class App {
+    
+    public app: express.Application;
+    public port: number;
 
-const port = 5000;
+    constructor(port: number,controllers: any[]){
 
-app.use(json());
+        this.app = express();
+        this.port = port;
 
-app.get('/', (req, res) => {
-    res.redirect("/movies");
-})
+        this.initMiddlerWares();
+        this.initRoutes(controllers);
+    }
 
-// app.use('/movies', movies);
+    public start(){
+        this.listen();
+    }
 
-app.use((req, res) => res.send(404));
+    public initMiddlerWares(){
+        this.app.use(express.json());
+    }
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-});
+    private listen() {
+        this.app.listen(this.port, () => {
+          console.log(`App listening on port ${this.port}`);
+          
+          this.connectDb();
+        });
+    }
 
+    private initRoutes(controllers: any[]) {
+        
+        this.app.get('/', (req: Request, res: Response) => {
+                res.redirect('/api/v1/movies');
+        });
+
+        controllers.forEach((controller: any) => {
+                  this.app.use('/api/v1/movies', controller.router);
+        });
+
+        this.app.get('*',  (req: Request, res: Response) => res.sendStatus(404));
+    }
+
+    private connectDb(){
+        db.sequelize.authenticate().then(result => {
+            console.log('Connected to the database');
+        }).catch(err => console.log(err));
+    }
+}
+
+export default App;
