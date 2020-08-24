@@ -33,7 +33,7 @@ MySQL
     3  npm install
     4. Create a .env file.
     5. Adjust the environment variable in docker-compose file.
-    6. Done? Go to the root folder path and run the following command:
+    6. Done? Go to the root folder and run the following command:
 
         docker-compose up --build
 
@@ -41,7 +41,7 @@ MySQL
 
     1. Install MySql.
     2. Clone repository https://github.com/otejada92/movie-api 
-    3. Go to the root folder path.
+    3. Go to the root folder.
     4. Run npm install.
     5. Create a .env file and setup the variables.
     6. Finally, run npm run dev:api.
@@ -59,7 +59,7 @@ MySQL
 
 ## Filter 
 
-Filter movie by:
+Movie filters:
 
     title, director, visible, writer
 
@@ -70,8 +70,6 @@ Example:
 
 ## Pagination
 
-Use the following query params:
-
 * pageSize : Number of records
 * page : Number of page
 
@@ -81,9 +79,9 @@ Example:
 
 
 ## Order
-Use the following query params:
+* sortBy: resource field
+* orderBy: DESC or ASC
 
-    sortBy and OrderBy
 Example:
 
     api/v1/movies?sortBy=id&orderBy=DESC
