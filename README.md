@@ -30,21 +30,25 @@ MySQL
 
     1. Install docker. 
     2. Clone repository https://github.com/otejada92/movie-api
-    3  npm install
-    4. Create a .env file.
-    5. Adjust the environment variable in docker-compose file.
-    6. Done? Go to the root folder and run the following command:
+    3. Run npm install
+    4. Run npm run build
+    5. Done? Go to the root folder and run the following command:
 
         docker-compose up --build
+        
+    6. Run npm run movie:generator
+    7. Run npm run db:init
 
 ### Common setup
 
     1. Install MySql.
+        * After install it you can use the scripts in the Database setup section.
     2. Clone repository https://github.com/otejada92/movie-api 
     3. Go to the root folder.
     4. Run npm install.
-    5. Create a .env file and setup the variables.
-    6. Finally, run npm run dev:api.
+    5. Run npm run movie:generator
+    6. Run npm run db:init
+    7. Run npm run dev:api
 
 # API resources
 
@@ -102,30 +106,40 @@ Example:
 
 # Database setup
 
-All this is done through sequelize if you need more information, [visit] (https://sequelize.org/)
+All this is done through sequelize if you need more information, [visit] (https://sequelize.org/), to run the following scripts update .env file.
 
-### Create 
+### Create DB
+
     npm run db:create
 
 # Migrations
 
+Create tables
+
 ### Run all
     npm run db:migrate:all
+
+Delete tables 
 
 ### Undo all
     npm run db:migrate:undo
 
 ## Seeders
 
+Insert data to tables.
+
 ### Run all
-    npm run db:seed:all
+    1. npm movie:generator
+    2. npm run db:seed:all
+
+Delete all data in the tables.
 
 ## Undo all
     npm run db:seed:undo
 
 ## Need data?
 
-The following script will create you a json file that automatically seeders will take. :beers:
+The following script will create you a json file with data that automatically seeders will take. :beers:
 
     Run npm movie:generator
 

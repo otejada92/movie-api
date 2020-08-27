@@ -8,9 +8,9 @@ services:
       - ./mysql:/docker-entrypoint-initdb.d
     environment:
       MYSQL_HOST: mysql
-      MYSQL_DATABASE: ''
-      MYSQL_USER: ''
-      MYSQL_PASSWORD: ''
+      MYSQL_DATABASE: 'movie'
+      MYSQL_USER: 'userTest'
+      MYSQL_PASSWORD: 'passwordTest'
       MYSQL_ROOT_PASSWORD: ''
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
@@ -20,21 +20,26 @@ services:
   api:
     image: api
     container_name: movie-api
+    restart: always
     build:
       context: .
       dockerfile: DockerFile
     environment:
       DB_HOST: mysql
-      DB_DEV_USER: ''
-      DB_DEV_PASSWORD: ''
-      DB_DEV_DATABASE: ''
+      DB_DEV_USER: 'userTest'
+      DB_DEV_PASSWORD: 'passwordTest'
+      DB_DEV_DATABASE: 'movie'
       DB_TEST_USER: ''
       DB_TEST_PASSWORD: ''
       DB_TEST_DATABASE: ''
-      DB_PORT: 
-      SERVER_PORT: 
+      DB_PORT: 3306
+      SERVER_PORT: 5000
       NODE_ENV: dev
+      WAIT_HOSTS: mysql:3306
     ports: 
     - "5001:5000"
     expose:
       - "5001"
+    depends_on:
+      - mysql
+    command: node server.js
