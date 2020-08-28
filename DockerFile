@@ -15,5 +15,3 @@ COPY .env ./dist/
 WORKDIR ./dist
 
 EXPOSE 5001
-
-CMD node server.js
