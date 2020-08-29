@@ -1,9 +1,11 @@
-import express, { Request, Response } from 'express';
+import express, {Request, Response, Application } from 'express';
+import { debugLogger, errorLogger } from './common/logger/config';
 import db from './database/db-instance';
+import errorRequestHandler from './middleware/error-request-handler';
 
 class App {
     
-    public app: express.Application;
+    public app: Application;
     public port: number;
 
     constructor(port: number,controllers: any[]){
@@ -11,16 +13,15 @@ class App {
         this.app = express();
         this.port = port;
 
-        this.initMiddlerWares();
+        this.app.use(debugLogger);
+        this.app.use(express.json());
         this.initRoutes(controllers);
+        this.app.use(errorLogger);
+        this.app.use(errorRequestHandler)
     }
 
     public start(){
         this.listen();
-    }
-
-    public initMiddlerWares(){
-        this.app.use(express.json());
     }
 
     private listen() {

@@ -9,8 +9,7 @@ export const development = {
       database: String(process.env.DB_DEV_DATABASE),
       host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT),
-      dialect: 'mysql',
-      operatorsAliases: false
+      logging: false
 }
 
 export const test = {
@@ -19,6 +18,5 @@ export const test = {
     database: String(process.env.DB_TEST_DATABASE),
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),
-    dialect: 'mysql',
-    operatorsAliases: false
+    logging: false
 }

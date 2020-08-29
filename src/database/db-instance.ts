@@ -9,11 +9,14 @@ if (process.env.NODE_ENV === "dev"){
 }
 else dbConfiguration = config.test;
 
-const {database, username, password , host, port} = dbConfiguration
+console.log(dbConfiguration);
+
+const {database, username, password , host, port, logging} = dbConfiguration
 const sequelize = new Sequelize(database, username, password, {
     host,
     port,
     dialect : 'mysql',
+    logging : logging
 });
 
 const db: DatabaseInstance = {sequelize, Sequelize}

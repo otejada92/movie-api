@@ -25,7 +25,6 @@ class MoviesController {
      */
     getMovies = async (request: Request, response: Response, next: any) => {
         
-
         try{
             const whereStatement = query.getWhereStatement(request, this.modelFilters);
             const orderStatement = query.getDataOrder(request);
