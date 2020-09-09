@@ -36,9 +36,9 @@ class ReviewsController {
                 ...pagination
             }
             
-            const findResponse = await Review.findAll(filter);
+            const reviews = await Review.findAll(filter);
             
-            if (findResponse) return response.status(200).json(findResponse);
+            if (reviews) return response.status(200).json(reviews);
             
            return  response.status(400).json({msg : 'Resource not found.'});
         }catch(err){
@@ -54,13 +54,13 @@ class ReviewsController {
         try{
             
             const { id } = request.params;  
-            const review: ReviewAttributes = request.body;
+            const newReview: ReviewAttributes = request.body;
 
-            const movieResponse = await Movie.findOne({where : {id : +id}});
+            const existMovie = await Movie.findOne({where : {id : +id}});
         
-            if(movieResponse){
-                const reviewResponse = await Review.create(review);
-                return response.status(201).json(reviewResponse);
+            if(existMovie){
+                const review = await Review.create(newReview);
+                return response.status(201).json(review);
             }
 
             return response.status(400).json({msg: 'Resource not created'});

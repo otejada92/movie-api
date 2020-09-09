@@ -38,9 +38,9 @@ class MoviesController {
                 ...orderStatement,
             };
             
-            const findQuery = await Movie.findAll(filters);
+            const movies = await Movie.findAll(filters);
             
-            if(findQuery) return response.status(200).json(findQuery);
+            if(movies) return response.status(200).json(movies);
            
            return response.status(400).json({mgs: 'Resource not found.'});
 
@@ -57,9 +57,9 @@ class MoviesController {
         try{
             const { id } = request.params;
 
-            const findResponse = await Movie.findByPk(id);
+            const movie = await Movie.findByPk(id);
             
-            if(findResponse) return response.json(findResponse);
+            if(movie) return response.json(movie);
 
            return  response.json({mgs: `No movie found w/ id: ${id}.`})
 
@@ -76,9 +76,9 @@ class MoviesController {
         try{
             const movie: MovieAttributes = request.body;
             
-            const movieInsert = await Movie.create(movie);
+            const newMovie = await Movie.create(movie);
             
-            if(movieInsert) return response.status(201).json(movieInsert);
+            if(newMovie) return response.status(201).json(newMovie);
 
             return response.status(400).json({msg: 'Resource not created.'});
 
