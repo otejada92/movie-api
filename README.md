@@ -4,6 +4,10 @@
 If you are here because Nate. Theses are improvements that I will merge after he or whoever finish reviewing the project. 
 Take this :beers: and go to MASTER.
 
+# VERY IMPORTANT: 
+If you are here because Nate. Theses are improvements that I will merge after he or whoever finish reviewing the project. 
+Take this :beers: and go to MASTER.
+
 ## About
 
 API that makes it easy to manipulate tons of movie records.

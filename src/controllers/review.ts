@@ -1,5 +1,5 @@
 import {Review, Movie } from '../models';
-import express from 'express';
+import express, {Request, Response} from 'express';
 import ReviewAttributes from '../interfaces/review.interface';
 import { query } from '../common/database/query';
 
@@ -21,7 +21,7 @@ class ReviewsController {
     /**
      * @route GET /api/v1/movies/:id/reviews
      */
-    getReviews = async (request: express.Request, response: express.Response, next: any) => {
+    getReviews = async (request: Request, response: Response, next: any) => {
 
         try{
             
@@ -49,7 +49,7 @@ class ReviewsController {
     /**
      * @route POST /api/v1/movies/:id/reviews
      */
-    createReview = async (request: express.Request, response: express.Response, next: any) => {
+    createReview = async (request: Request, response: Response, next: any) => {
         
         try{
             
