@@ -1,4 +1,8 @@
-# Movie DB API
+# Movie DB API 
+
+# VERY IMPORTANT: 
+If you are here because Nate. Theses are improvements that I will merge after he or whoever finish reviewing the project. 
+Take this :beers: and go to MASTER.
 
 ## About
 
@@ -110,9 +114,9 @@ Example:
 
 # Database setup
 
-All this is done through sequelize if you need more information, [visit] (https://sequelize.org/), to run the following scripts update .env file.
+All this is done through sequelize if you need more information, [visit] (https://sequelize.org/).
 
-### Create DB
+By the way, if you want to run the following scripts against a different environment, just change --env value.
 
     npm run db:create
 
@@ -143,7 +147,7 @@ Delete all data in the tables.
 
 ## Need data?
 
-The following script will create you a json file with data that automatically seeders will take. :beers:
+The following script will create you a json file that automatically seeders will take.  :beers:
 
     Run npm movie:generator
 

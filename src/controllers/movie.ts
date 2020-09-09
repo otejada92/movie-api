@@ -42,7 +42,7 @@ class MoviesController {
             
             if(movies) return response.status(200).json(movies);
            
-           return response.status(400).json({mgs: 'Resource not found.'});
+           return response.status(404).json({mgs: 'Resource not found.'});
 
         }catch(err){
             next(err);
@@ -61,7 +61,7 @@ class MoviesController {
             
             if(movie) return response.json(movie);
 
-           return  response.json({mgs: `No movie found w/ id: ${id}.`})
+           return  response.status(404).json({mgs: `No movie found w/ id: ${id}.`})
 
         }catch(err){
             next(err);
@@ -80,7 +80,7 @@ class MoviesController {
             
             if(newMovie) return response.status(201).json(newMovie);
 
-            return response.status(400).json({msg: 'Resource not created.'});
+            return response.status(204).json({msg: 'Resource not created.'});
 
         }catch(err){
             next(err);
@@ -92,14 +92,16 @@ class MoviesController {
      */
     updateMovie = async (request: Request, response: Response, next: any) => {
 
+        const resultIndex = 0;
         try{
             const { id } = request.params;
-    
             const whereStatement = { where : { id } };
 
             const updateResponse = await Movie.update({visible: false}, whereStatement)
             
-            return response.json(updateResponse);
+            if(updateResponse[resultIndex]) return response.status(201).json('Resource updated.');
+
+            return response.status(204).json('Resource not updated.');
 
         }catch(err){
             next(err);

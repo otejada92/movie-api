@@ -40,7 +40,7 @@ class ReviewsController {
             
             if (reviews) return response.status(200).json(reviews);
             
-           return  response.status(400).json({msg : 'Resource not found.'});
+           return  response.status(404).json({msg : 'Resource not found.'});
         }catch(err){
             next(err);
         }
@@ -63,7 +63,7 @@ class ReviewsController {
                 return response.status(201).json(review);
             }
 
-            return response.status(400).json({msg: 'Resource not created'});
+            return response.status(204).json({msg: 'Resource not created'});
         }catch(err){
             next(err);
         }

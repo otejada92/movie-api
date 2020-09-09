@@ -1,5 +1,5 @@
-import MovieAttributes from "../../interfaces/movie.interface";
-import ReviewAttributes from "../../interfaces/review.interface";
+import MovieAttributes from "../interfaces/movie.interface";
+import ReviewAttributes from "../interfaces/review.interface";
 
 const movieData:any = {
     title: "Mocha test data",
